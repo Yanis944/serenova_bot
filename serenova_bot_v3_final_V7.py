@@ -315,11 +315,11 @@ async def seringue_handler(update: Update, ctx: ContextTypes.DEFAULT_TYPE):
     if q.data == "seringue_yes":
         cart = ctx.user_data.setdefault("cart", [])
         # OFFRE D'ÉTÉ : pack offert (prix 0€)
-        for item in cart:
-            if item["nom"] == "Pack Seringue (Offert)":
-                break
-        else:
-            cart.append({"nom": "Pack Seringue (Offert)", "prix": 0, "qte": 1})
+        #for item in cart:
+           # if item["nom"] == "Pack Seringue (Offert)":
+                #break
+        #else:
+            #cart.append({"nom": "Pack Seringue (Offert)", "prix": 0, "qte": 1})
         # ── À RÉACTIVER APRÈS LE 1ER SEPTEMBRE ──
          for item in cart:
              if item["nom"] == "Pack Seringue":
