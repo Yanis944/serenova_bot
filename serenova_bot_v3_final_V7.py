@@ -272,33 +272,23 @@ async def add_to_cart(update, ctx, qte, from_msg=False):
 # ═══════════════════════════════════════════
 async def show_seringue(update, ctx, from_msg=False):
     # ── OFFRE D'ÉTÉ active jusqu'au 1er septembre ───────────
-    #msg = (
-     #   f"{sep()}\n"
-     #   "🌞 *OFFRE D'ÉTÉ*\n\n"
-      #  "Du 1er au 31 juillet, le pack seringue est *offert* !\n\n"
-      #  "💉 *Pack seringue inclus :*\n"
-      #  "• 10 seringues à insuline 1 ml\n"
-      #  "• 10 tampons d'alcool\n\n"
-      #  "Voulez-vous en bénéficier ?\n"
-    #)
-    #buttons = [
-        #[InlineKeyboardButton("✅  Oui, j'en bénéficie !", callback_data="seringue_yes")],
-        #[InlineKeyboardButton("❌  Non merci, continuer",  callback_data="seringue_no")],
-    #]
+    # msg = (...)
+    # buttons = [...]
+
     # ── À RÉACTIVER APRÈS LE 1ER SEPTEMBRE ──────────────────
-     msg = (
-         f"{sep()}\n"
-         "💉 *PACK SERINGUE EN OPTION*\n\n"
-         "Nécessaire pour les injections.\n\n"
-         "Ajoutez le pack seringue pour *10€* :\n"
-         "• 10 seringues à insuline 1 ml\n"
-         "• 10 tampons d'alcool\n"
-     )
-     buttons = [
-         [InlineKeyboardButton("✅  Oui, ajouter (+10€)",  callback_data="seringue_yes")],
-         [InlineKeyboardButton("❌  Non merci, continuer", callback_data="seringue_no")],
-     ]
-    # ────────────────────────────────────────────────────────
+    msg = (
+        f"{sep()}\n"
+        "💉 *PACK SERINGUE EN OPTION*\n\n"
+        "Nécessaire pour les injections.\n\n"
+        "Ajoutez le pack seringue pour *10€* :\n"
+        "• 10 seringues à insuline 1 ml\n"
+        "• 10 tampons d'alcool\n"
+    )
+    buttons = [
+        [InlineKeyboardButton("✅  Oui, ajouter (+10€)", callback_data="seringue_yes")],
+        [InlineKeyboardButton("❌  Non merci, continuer", callback_data="seringue_no")],
+    ]
+
     if from_msg:
         await update.message.reply_text(msg, reply_markup=kb(buttons), parse_mode="Markdown")
     else:
@@ -306,6 +296,7 @@ async def show_seringue(update, ctx, from_msg=False):
             await update.callback_query.edit_message_text(msg, reply_markup=kb(buttons), parse_mode="Markdown")
         except Exception:
             await update.effective_message.reply_text(msg, reply_markup=kb(buttons), parse_mode="Markdown")
+
     return SERINGUE_STATE
 
 
@@ -322,14 +313,13 @@ async def seringue_handler(update: Update, ctx: ContextTypes.DEFAULT_TYPE):
             #cart.append({"nom": "Pack Seringue (Offert)", "prix": 0, "qte": 1})
         # ── À RÉACTIVER APRÈS LE 1ER SEPTEMBRE ──
          for item in cart:
-             if item["nom"] == "Pack Seringue":
-                 item["qte"] += 1
-                 break
-         else:
-             cart.append({"nom": "Pack Seringue", "prix": 10, "qte": 1})
-        # ────────────────────────────────────────
-    return await show_cart(update, ctx)
+            if item["nom"] == "Pack Seringue":
+                item["qte"] += 1
+                break
+        else:
+            cart.append({"nom": "Pack Seringue", "prix": 10, "qte": 1})
 
+    return await show_cart(update, ctx)
 
 # ═══════════════════════════════════════════
 # PAGE 4 — ÉTAPE 2/5 PANIER
