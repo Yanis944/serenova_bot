@@ -217,7 +217,7 @@ async def show_product(update: Update, ctx: ContextTypes.DEFAULT_TYPE):
         "✅ *Inclus dans chaque commande :*\n"
         "• 2 seringues à insuline\n"
         "• 1 fiole d'eau bactériostatique\n"
-        "• 5 tampons d'alcool\n\n"
+        "• 3 tampons d'alcool\n\n"
         "Choisissez votre quantité :\n"
     )
     buttons = [
@@ -272,32 +272,32 @@ async def add_to_cart(update, ctx, qte, from_msg=False):
 # ═══════════════════════════════════════════
 async def show_seringue(update, ctx, from_msg=False):
     # ── OFFRE D'ÉTÉ active jusqu'au 1er septembre ───────────
-    msg = (
-        f"{sep()}\n"
-        "🌞 *OFFRE D'ÉTÉ*\n\n"
-        "Du 1er au 31 juillet, le pack seringue est *offert* !\n\n"
-        "💉 *Pack seringue inclus :*\n"
-        "• 10 seringues à insuline 1 ml\n"
-        "• 10 tampons d'alcool\n\n"
-        "Voulez-vous en bénéficier ?\n"
-    )
-    buttons = [
-        [InlineKeyboardButton("✅  Oui, j'en bénéficie !", callback_data="seringue_yes")],
-        [InlineKeyboardButton("❌  Non merci, continuer",  callback_data="seringue_no")],
-    ]
+    #msg = (
+     #   f"{sep()}\n"
+     #   "🌞 *OFFRE D'ÉTÉ*\n\n"
+      #  "Du 1er au 31 juillet, le pack seringue est *offert* !\n\n"
+      #  "💉 *Pack seringue inclus :*\n"
+      #  "• 10 seringues à insuline 1 ml\n"
+      #  "• 10 tampons d'alcool\n\n"
+      #  "Voulez-vous en bénéficier ?\n"
+    #)
+    #buttons = [
+        #[InlineKeyboardButton("✅  Oui, j'en bénéficie !", callback_data="seringue_yes")],
+        #[InlineKeyboardButton("❌  Non merci, continuer",  callback_data="seringue_no")],
+    #]
     # ── À RÉACTIVER APRÈS LE 1ER SEPTEMBRE ──────────────────
-    # msg = (
-    #     f"{sep()}\n"
-    #     "💉 *PACK SERINGUE EN OPTION*\n\n"
-    #     "Nécessaire pour les injections.\n\n"
-    #     "Ajoutez le pack seringue pour *10€* :\n"
-    #     "• 10 seringues à insuline 1 ml\n"
-    #     "• 10 tampons d'alcool\n"
-    # )
-    # buttons = [
-    #     [InlineKeyboardButton("✅  Oui, ajouter (+10€)",  callback_data="seringue_yes")],
-    #     [InlineKeyboardButton("❌  Non merci, continuer", callback_data="seringue_no")],
-    # ]
+     msg = (
+         f"{sep()}\n"
+         "💉 *PACK SERINGUE EN OPTION*\n\n"
+         "Nécessaire pour les injections.\n\n"
+         "Ajoutez le pack seringue pour *10€* :\n"
+         "• 10 seringues à insuline 1 ml\n"
+         "• 10 tampons d'alcool\n"
+     )
+     buttons = [
+         [InlineKeyboardButton("✅  Oui, ajouter (+10€)",  callback_data="seringue_yes")],
+         [InlineKeyboardButton("❌  Non merci, continuer", callback_data="seringue_no")],
+     ]
     # ────────────────────────────────────────────────────────
     if from_msg:
         await update.message.reply_text(msg, reply_markup=kb(buttons), parse_mode="Markdown")
